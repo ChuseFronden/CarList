@@ -11,13 +11,13 @@ class EditCar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstname: "",
-      lastname: "",
-      streetaddress: "",
-      postcode: "",
-      city: "",
-      email: "",
-      phone: ""
+      open: false,
+      model: "",
+      brand: "",
+      year: "",
+      price: "",
+      fuel: "",
+      color: ""
     };
   }
 
@@ -37,15 +37,13 @@ class EditCar extends Component {
 
   updateCar = () => {
     const newCar = {
-      firstname: this.state.firstname,
-      lastname: this.state.lastname,
-      streetaddress: this.state.streetaddress,
-      postcode: this.state.postcode,
-      city: this.state.city,
-      email: this.state.email,
-      phone: this.state.phone
+      model: this.state.model,
+      color: this.state.color,
+      brand: this.state.brand,
+      year: this.state.year,
+      fuel: this.state.fuel,
+      price: this.state.price
     };
-
     this.props.updateCar(this.props.link, newCar);
     this.handleClose();
   };
@@ -59,67 +57,58 @@ class EditCar extends Component {
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
         >
-     <DialogTitle id="form-dialog-title">Edit Customer</DialogTitle>
+     <DialogTitle id="form-dialog-title">Edit Car</DialogTitle>
           <DialogContent>
           <TextField
               onChange={this.handleChange}
               autoFocus
               margin="dense"
-              id="firstname"
-              label="Firstname"
-              value={this.state.firstname}
+              id="brand"
+              label="Brand"
+              value={this.state.brand}
               fullWidth
             />
             <TextField
               onChange={this.handleChange}
               margin="dense"
-              id="lastname"
-              label="Lastname"
-              value={this.state.lastname}
+              id="model"
+              label="Model"
+              value={this.state.model}
               fullWidth
             />
             <TextField
               onChange={this.handleChange}
               margin="dense"
-              id="streetaddress"
-              label="Address"
-              value={this.state.streetaddress}
-              fullWidth
-            />
-            <TextField
-              onChange={this.handleChange}
-              margin="dense"
-              id="postcode"
-              label="Postcode"
+              id="year"
+              label="Year"
               type="number"
-              value={this.state.postcode}
+              value={this.state.year}
               fullWidth
             />
             <TextField
               onChange={this.handleChange}
               margin="dense"
-              id="city"
-              label="City"
-              value={this.state.city}
-              fullWidth
-            />
-            <TextField
-              onChange={this.handleChange}
-              margin="dense"
-              id="email"
-              label="Email"
-              value={this.state.email}
-              fullWidth
-            />
-            <TextField
-              onChange={this.handleChange}
-              margin="dense"
-              id="phone"
-              label="Phone number"
+              id="price"
+              label="Price"
               type="number"
-              value={this.state.phone}
+              value={this.state.price}
               fullWidth
-
+            />
+            <TextField
+              onChange={this.handleChange}
+              margin="dense"
+              id="color"
+              label="Color"
+              value={this.state.color}
+              fullWidth
+            />
+            <TextField
+              onChange={this.handleChange}
+              margin="dense"
+              id="fuel"
+              label="Fuel"
+              value={this.state.fuel}
+              fullWidth
             />
           </DialogContent>
           <DialogActions>

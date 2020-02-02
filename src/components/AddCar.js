@@ -11,20 +11,17 @@ class AppCar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstname: "",
-      lastname: "",
-      streetaddress: "",
-      postcode: "",
-      city: "",
-      email: "",
-      phone: ""
-
+      open: false,
+      model: "",
+      brand: "",
+      year: "",
+      price: "",
+      fuel: "",
+      color: ""
     };
   }
   handleClickOpen = () => {
-    this.setState({
-      open: true 
- });
+    this.setState({ open: true });
   };
 
   handleClose = () => {
@@ -33,16 +30,15 @@ class AppCar extends Component {
   handleChange = event => {
     this.setState({ [event.target.id]: event.target.value });
   };
+
   addCar = () => {
     const newCar = {
-      firstname: this.state.firstname,
-      lastname: this.state.lastname,
-      streetaddress: this.state.streetaddress,
-      postcode: this.state.postcode,
-      city: this.state.city,
-      email: this.state.email,
-      phone: this.state.phone
-
+      model: this.state.model,
+      color: this.state.color,
+      brand: this.state.brand,
+      year: this.state.year,
+      fuel: this.state.fuel,
+      price: this.state.price
     };
     this.props.saveCar(newCar);
     this.handleClose();
@@ -57,67 +53,52 @@ class AppCar extends Component {
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
         >
-      <DialogTitle id="form-dialog-title">Edit Customer</DialogTitle>
+       <DialogTitle id="form-dialog-title">Add New Car</DialogTitle>
           <DialogContent>
             <TextField
               onChange={this.handleChange}
               autoFocus
               margin="dense"
-              id="firstname"
-              label="Firstname"
-              value={this.state.firstname}
+              id="brand"
+              label="Brand"
               fullWidth
             />
             <TextField
               onChange={this.handleChange}
               margin="dense"
-              id="lastname"
-              label="Lastname"
-              value={this.state.lastname}
+              id="model"
+              label="Model"
               fullWidth
             />
             <TextField
               onChange={this.handleChange}
               margin="dense"
-              id="streetaddress"
-              label="Address"
-              value={this.state.streetaddress}
-              fullWidth
-            />
-            <TextField
-              onChange={this.handleChange}
-              margin="dense"
-              id="postcode"
-              label="Postcode"
+              id="year"
+              label="Year"
               type="number"
-              value={this.state.postcode}
               fullWidth
             />
             <TextField
               onChange={this.handleChange}
               margin="dense"
-              id="city"
-              label="City"
-              value={this.state.city}
-              fullWidth
-            />
-            <TextField
-              onChange={this.handleChange}
-              margin="dense"
-              id="email"
-              label="Email"
-              value={this.state.email}
-              fullWidth
-            />
-            <TextField
-              onChange={this.handleChange}
-              margin="dense"
-              id="phone"
-              label="Phone number"
+              id="price"
+              label="Price"
               type="number"
-              value={this.state.phone}
               fullWidth
-
+            />
+            <TextField
+              onChange={this.handleChange}
+              margin="dense"
+              id="color"
+              label="Color"
+              fullWidth
+            />
+            <TextField
+              onChange={this.handleChange}
+              margin="dense"
+              id="fuel"
+              label="Fuel"
+              fullWidth
             />
           </DialogContent>
           <DialogActions>
@@ -130,7 +111,7 @@ class AppCar extends Component {
           </DialogActions>
         </Dialog>
         <Button onClick={this.handleClickOpen} color="primary">
-          EDIT{" "}
+          ADD CAR{" "}
         </Button>
       </div>
     );

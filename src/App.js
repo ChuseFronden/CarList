@@ -13,7 +13,7 @@ class App extends Component {
         <Toolbar>
          
           <Typography variant="h6" color="inherit">
-          Personal Trainer company 
+          Carlist 
           </Typography>
         </Toolbar>
       </AppBar>

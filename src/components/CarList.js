@@ -17,9 +17,9 @@ class CarList extends Component {
     }
 
     loadCars = () => {
-        fetch("https://customerrest.herokuapp.com/api/customers")
+        fetch("https://carstockrest.herokuapp.com/cars")
         .then(response => response.json())
-        .then(jsondata => this.setState({ customers: jsondata._embedded.content }))
+        .then(jsondata => this.setState({  cars: jsondata._embedded.cars }))
         .catch(err => console.error(err));
     };
 
@@ -49,7 +49,7 @@ class CarList extends Component {
 
 
  saveCar = car => {
-    fetch("https://customerrest.herokuapp.com/api/customers", {
+    fetch("https://carstockrest.herokuapp.com/cars", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -63,16 +63,18 @@ class CarList extends Component {
   handleClose = () => {
     this.setState({ open: false });
   };
-  render() {
-    const columns = [
-      { Header: "Firstname", accessor: "firstname" },
-      { Header: "Lastname", accessor: "lastname" },
-      { Header: "Streetaddress", accessor: "streetaddress" },
-      { Header: "Postcode", accessor: "postcode" },
-      { Header: "City", accessor: "city" },
-      { Header: "Email", accessor: "email" },
-      { Header: "Phone", accessor: "phone" },
 
+
+  render() 
+  
+  {
+    const columns = [
+      { Header: "Brans", accessor: "brand" },
+      { Header: "Models", accessor: "model" },
+      { Header: "Years", accessor: "year" },
+      { Header: "Price", accessor: "price" },
+      { Header: "Color", accessor: "color" },
+      { Header: "Fuel", accessor: "fuel" },
       {
         Header: "",
         accessor: "_links.self.href",
@@ -80,22 +82,22 @@ class CarList extends Component {
         sortable: "false",
         width: 100,
         Cell: ({ value, row }) => (
-            <EditCar updateCar={this.updateCar} link={value} car={row} />
-          )
-        },
-        {
-          Header: "",
-          accessor: "_links.self.href",
-          filterable: "false",
-          sortable: "false",
-          width: 100,
-          Cell: value => (
-            <Button color="secondary" onClick={() => this.deleteCar(value)}>
-              Delete
-            </Button>
-          )
-        }
-      ];
+          <EditCar updateCar={this.updateCar} link={value} car={row} />
+        )
+      },
+      {
+        Header: "",
+        accessor: "_links.self.href",
+        filterable: "false",
+        sortable: "false",
+        width: 100,
+        Cell: value => (
+          <Button color="secondary" onClick={() => this.deleteCar(value)}>
+            Delete
+          </Button>
+        )
+      }
+    ];
       return (
         <div>
           <AddCar saveCar={this.saveCar} />
